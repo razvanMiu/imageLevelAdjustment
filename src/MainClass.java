@@ -9,7 +9,6 @@ public class MainClass {
 		//myImage.BRIGHTNESS(-100);
 		//myImage.FILTER_GRAY();
 		myImage.BLACK_WHITE(0,0,0,0,0,0);
-		//myImage.RED(40);
 		//myImage.CONTRAST(40);
 		myImage.writeImage("D:\\Workspace\\EclipseWorkspace\\levelAdjustment-temaAVJ\\images\\test1.jpg");
 	}
