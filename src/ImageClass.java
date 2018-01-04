@@ -35,7 +35,7 @@ public class ImageClass {
 		}
 	}
 	
-	// Write image
+	// 	Write image
 	public void writeImage(String newPath) {
 		try{
 			  f = new File(newPath);  
@@ -47,7 +47,7 @@ public class ImageClass {
 		
 	}
 	
-	// Brightness adjustment
+	// 	Brightness adjustment
 	public void BRIGHTNESS(int B) {
 		// Get image width and height
 		int width = this.imageCopy.getWidth();
