@@ -138,3 +138,55 @@ public void FILTER_GRAY() {
 	}
 }
 ```
+## Contrast algorithm
+The first step is to calculate a contrast corection factor:
+
+```F = (259*(C + 255)) / (255*(259 - C))```
+
+- F -> contrast corection factor
+- C -> desired level of contrast
+
+The next step is to perform the actual contrast adjustment itself.
+
+```
+R' = F(R - 128) + 128
+G' = F(G - 128) + 128
+B' = F(B - 128) + 128
+```
+
+So the code for this is:
+
+```java
+public void CONTRAST(int C) {
+	// Contrast correction factor
+	float factor = (float)(259 *(C + 255)) / (255 * (259 - C));
+		
+	// Get image width and height
+	int width = this.imageCopy.getWidth();
+	int height = this.imageCopy.getHeight();
+
+	for(int y = 0; y < height; y++) {	
+		for(int x = 0; x < width; x++){
+
+			int p = this.imageCopy.getRGB(x, y);
+
+			int r = (p>>16)&0xff;
+			int g = (p>>8)&0xff;
+			int b = p&0xff;
+
+			//	Calculate contrast correction
+			r = this.Truncate((int) (factor * (r - 128) + 128));
+			g = this.Truncate((int) (factor * (g - 128) + 128));
+			b = this.Truncate((int) (factor * (b - 128) + 128));
+
+			p = (r << 16) | (g << 8) | b;
+			this.image.setRGB(x, y, p);
+		}
+	}
+}
+```
+# Black & White algorithm
+For this one I couldn't find documentation, so if you have something too add please feel free to add.
+The steps for this are:
+- Make a copy of the image
+- Convert the actual image, on which we will gonna adjust the colors level, to grayscale
