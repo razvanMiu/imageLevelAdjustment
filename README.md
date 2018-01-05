@@ -110,6 +110,31 @@ A very simple method is to change the value of each pixel with the average of RG
 
 ```L = (R + G + B) / 3```
 
-Another method is to use the following 
+Another method is to use the following equation:
 
 ```L = 0.299 * R + 0.587 * G + 0.114 * B```
+
+```java
+public void FILTER_GRAY() {
+	// Get image width and height
+	int width = this.imageCopy.getWidth();
+	int height = this.imageCopy.getHeight();
+
+	for(int y = 0; y < height; y++) {
+		for(int x = 0; x < width; x++){
+
+			int p = this.imageCopy.getRGB(x, y);
+
+			int r = (p>>16)&0xff;
+			int g = (p>>8)&0xff;
+			int b = p&0xff;
+
+			//	Find average for (x, y) pixel
+			int avg = (r+g+b)/3;
+
+			p = (avg << 16) | (avg << 8) | avg;
+			this.image.setRGB(x, y, p);
+		}
+	}
+}
+```
