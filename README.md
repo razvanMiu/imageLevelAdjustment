@@ -196,7 +196,7 @@ There are six palettes:
 - ![#ff00ff](https://placehold.it/15/ff00ff/000000?text=+)`(MAGENTA)`
 
 To separate the RGB I used 3 if statements:
-```java
+```
 //	RED
 if(r > g && r > b) {
 	...
@@ -210,6 +210,45 @@ if(b > r && b > g) {
 	...
 } 
 ```
+
+To separate the CMY I converted the RGB to CMYK and then I used 3 if as above
+
+### RGB to CMYK
+```java
+float cyan 	= 1.0f - r / 255.0f;
+float magenta 	= 1.0f - g / 255.0f;
+float yellow 	= 1.0f - b / 255.0f;
+float k = Math.min(cyan, Math.min(magenta, yellow));
+
+if(k >= 1.0f) {
+	cyan 	= 0;
+	magenta = 0;
+	yellow 	= 0;
+} else {
+	float s = 1.0f - k;
+	cyan 	= (cyan - k) / s;
+	magenta = magentam - k) / s;
+	yellow 	= (yellow - k) / s;
+}				
+```
+
+```
+// CYAN
+if(cyan > yellow && cyan > magenta) {
+	...
+}
+// MAGENTA 
+if(magenta > yellow && magenta > cyan) {
+	...
+}
+// YELLOW
+if(yellow > cyan && yellow > magenta) {
+	...
+}
+```
+
+
+
 
 The steps for this are:
 - Make a copy of the image
