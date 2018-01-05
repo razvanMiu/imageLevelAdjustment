@@ -264,10 +264,12 @@ If you see something like ```HSV[1] * HSV[1]``` that's to decrease the brightnes
 
 The following equation are not very smart but that's what I came up with:
 
-* RED 	= (int) (8 * RED * HSV[1] * HSV[2] * HSV[2] * (magenta - cyan));
-* GREEN = (int) (40 * GREEN * HSV[1] * HSV[2] * (yellow - magenta) * (cyan - magenta));
-* BLUE 	= (int) (70 * BLUE * HSV[1]  * HSV[2] * (b/255.0 - g/255.0) * (b/255.0 - g/255.0));
-* CYAN 	= (int) (10 * CYAN * HSV[1] * HSV[2] * (cyan - magenta) * g/255.0);
-* YELLOW = (int) (3 * YELLOW * HSV[1] * HSV[2] * (yellow - magenta) * r/255.0);
+```
+RED 	= (int) (8 * RED * HSV[1] * HSV[2] * HSV[2] * (magenta - cyan));
+GREEN = (int) (40 * GREEN * HSV[1] * HSV[2] * (yellow - magenta) * (cyan - magenta));
+BLUE 	= (int) (70 * BLUE * HSV[1]  * HSV[2] * (b/255.0 - g/255.0) * (b/255.0 - g/255.0));
+CYAN 	= (int) (10 * CYAN * HSV[1] * HSV[2] * (cyan - magenta) * g/255.0);
+YELLOW = (int) (3 * YELLOW * HSV[1] * HSV[2] * (yellow - magenta) * r/255.0);
+```
 
 I don't mention MAGENTA because I couldn't find something that works.
