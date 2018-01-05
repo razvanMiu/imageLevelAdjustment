@@ -38,8 +38,8 @@ public class ImageClass {
 	// 	Write image
 	public void writeImage(String newPath) {
 		try{
-			  f = new File(newPath);  
-			  ImageIO.write(image, "jpg", f);
+			  this.f = new File(newPath);  
+			  ImageIO.write(this.image, "jpg", this.f);
 			  System.out.println("Writing complete.");
 		}catch(IOException e) {
 		      System.out.println("Error: " + e);
@@ -62,7 +62,7 @@ public class ImageClass {
 				int g = (p>>8)&0xff;
 				int b = p&0xff;
 				
-				//	Calculate contrast correction
+				//	Add brightness
 				r = this.Truncate((int) (r + B));
 				g = this.Truncate((int) (g + B));
 				b = this.Truncate((int) (b + B));
