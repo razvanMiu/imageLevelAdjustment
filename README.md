@@ -24,24 +24,24 @@ private File f = null;                      //  Stores the image file path
 ## Read image
 ```java
 public void readImage(String path) {
-  try {
-    this.f = new File(path);
-    this.image = ImageIO.read(this.f);
-  } catch(IOException e) {
-      System.out.println("Error: " + e);
-    }
+	try {
+	    this.f = new File(path);
+	    this.image = ImageIO.read(this.f);
+  	} catch(IOException e) {
+      		System.out.println("Error: " + e);
+    	}
 }
 ```
 ## Write image
 ```java
 public void writeImage(String newPath) {
-  try{
-    this.f = new File(newPath);  
-    ImageIO.write(this.image, "jpg", this.f);
-    System.out.println("Writing complete.");
-  } catch(IOException e) {
-      System.out.println("Error: " + e);
-    }
+	try{
+    		this.f = new File(newPath);  
+    		ImageIO.write(this.image, "jpg", this.f);
+    		System.out.println("Writing complete.");
+  	} catch(IOException e) {
+      		System.out.println("Error: " + e);
+    	}
 }
 ```
 * **"Try"** and **"catch"** are keywords that represent the handling of exceptions due to data or coding errors during program execution. A try block is the block of code in which exceptions occur. A catch block catches and handles try block exceptions.
@@ -80,20 +80,20 @@ public void BRIGHTNESS(int B) {
 	int height = this.imageCopy.getHeight();
 
 	for(int y = 0; y < height; y++) {
-		for(int x = 0; x < width; x++){
+		for(int x = 0; x < width; x++) {
 
-		int p = this.imageCopy.getRGB(x, y);
-		int r = (p>>16)&0xff;
-		int g = (p>>8)&0xff;
-		int b = p&0xff;
+			int p = this.imageCopy.getRGB(x, y);
+			int r = (p>>16)&0xff;
+			int g = (p>>8)&0xff;
+			int b = p&0xff;
 
-		//Add brightness
-		r = this.Truncate((int) (r + B));
-		g = this.Truncate((int) (g + B));
-		b = this.Truncate((int) (b + B));
+			//Add brightness
+			r = this.Truncate((int) (r + B));
+			g = this.Truncate((int) (g + B));
+			b = this.Truncate((int) (b + B));
 
-		p = (r << 16) | (g << 8) | b;
-		this.image.setRGB(x, y, p);
+			p = (r << 16) | (g << 8) | b;
+			this.image.setRGB(x, y, p);
 		}
 	}
 }
