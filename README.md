@@ -70,14 +70,15 @@ this.image.setRGB(x, y, p);
 ```
 ## Brightness algorithm
   To adjust the brightness of an image all you have to do is add the desired change in brightness to each pixel RGB component. Also, if the new value exceeds 255 it will remain 255 and if the new value is below 0 it will take the value of 0.
-  ```java
+  
+```java
 public void BRIGHTNESS(int B) {
-  // Get image width and height
-  int width = this.imageCopy.getWidth();
-  int height = this.imageCopy.getHeight();
-		
-  for(int y = 0; y < height; y++) {
-    for(int x = 0; x < width; x++){
+	// Get image width and height
+	int width = this.imageCopy.getWidth();
+	int height = this.imageCopy.getHeight();
+
+	for(int y = 0; y < height; y++) {
+		for(int x = 0; x < width; x++){
   
       int p = this.imageCopy.getRGB(x, y);
       int r = (p>>16)&0xff;
