@@ -368,7 +368,7 @@ public void BLACK_WHITE(int RED, int YELLOW, int GREEN, int CYAN, int BLUE, int 
 ```
 
 # LevelAdjustment.java
-It is the GUI of the application and here I will highlight how to make an **open file button**, **save button**
+It is the GUI of the application and here I will highlight how to make an **open file button** and **save button**
 
 #### Browse button
 
