@@ -37,7 +37,7 @@ public void readImage(String path) {
 public void writeImage(String newPath) {
   try{
     this.f = new File(newPath);  
-    ImageIO.write(image, "jpg", this.f);
+    ImageIO.write(this.image, "jpg", this.f);
     System.out.println("Writing complete.");
   } catch(IOException e) {
       System.out.println("Error: " + e);
@@ -46,6 +46,27 @@ public void writeImage(String newPath) {
 ```
 * **"Try"** and **"catch"** are keywords that represent the handling of exceptions due to data or coding errors during program execution. A try block is the block of code in which exceptions occur. A catch block catches and handles try block exceptions.
 * **IOException** signals that an I/O exception of some sort has occurred.
+## Getting and setting RGB components of a pixel
+* **getRGB(x, y)** method of **BufferedImage** returns an int of 32 bits in which:
+  - 0-7 represents value of BLUE
+  - 8-15 represents value of GREEN
+  - 16-23 represents value of RED
+  - 24-31 represents value of ALPHA
+  
+So, to take the value of a component we have to right shift through the bits and then convert it to decimal using & operator.
+```
+0xff(hex) = 11111111(2) = 255(10)
+```
+```java
+int p = this.image.getRGB(x, y);
 
+int A = (p>>24)&0xff;
+int R = (p>>16)&0xff;
+int G = (p>>8)&0xff;
+int B = p&0xff;
+
+p = (A << 24) | (R << 16) | (G << 8) | B;
+this.image.setRGB(x, y, p);
+```
 ## Brightness algorithm
 * To adjust the brightness of an image all you have to do is add the desired change in brightness to each pixel RGB components
