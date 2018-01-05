@@ -54,9 +54,11 @@ public void writeImage(String newPath) {
   - 24-31 represents value of ALPHA
   
 So, to take the value of a component we have to right shift through the bits and then convert it to decimal using & operator.
+
 ```
 0xff(hex) = 11111111(2) = 255(10)
 ```
+
 ```java
 int p = this.image.getRGB(x, y);
 
@@ -79,26 +81,25 @@ public void BRIGHTNESS(int B) {
 
 	for(int y = 0; y < height; y++) {
 		for(int x = 0; x < width; x++){
-  
-      int p = this.imageCopy.getRGB(x, y);
-      int r = (p>>16)&0xff;
-      int g = (p>>8)&0xff;
-      int b = p&0xff;
-				
-      //	Add brightness
-      r = this.Truncate((int) (r + B));
-      g = this.Truncate((int) (g + B));
-      b = this.Truncate((int) (b + B));
-	
-      p = (r << 16) | (g << 8) | b;
-      this.image.setRGB(x, y, p);
-    }
-  }
-}
 
+		int p = this.imageCopy.getRGB(x, y);
+		int r = (p>>16)&0xff;
+		int g = (p>>8)&0xff;
+		int b = p&0xff;
+
+		//Add brightness
+		r = this.Truncate((int) (r + B));
+		g = this.Truncate((int) (g + B));
+		b = this.Truncate((int) (b + B));
+
+		p = (r << 16) | (g << 8) | b;
+		this.image.setRGB(x, y, p);
+		}
+	}
+}
 private int Truncate(int value) {
-  if(value < 0) return 0;
-  if(value > 255) return 255;
-  return value;
+	if(value < 0) return 0;
+	if(value > 255) return 255;
+	return value;
 }
 ```
