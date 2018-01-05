@@ -213,7 +213,7 @@ if(b > r && b > g) {
 
 To separate the CMY I converted the RGB to CMYK and then I used 3 if as above
 
-### RGB to CMYK
+#### RGB to CMYK
 ```java
 float cyan 	= 1.0f - r / 255.0f;
 float magenta 	= 1.0f - g / 255.0f;
@@ -247,9 +247,27 @@ if(yellow > cyan && yellow > magenta) {
 }
 ```
 
+#### RGB to HSV
+```
+float HSV[] = new float[3];
+Color.RGBtoHSB(r, g, b, HSV);
 
+HSV[0] ---> Hue
+HSV[1] ---> Saturation
+HSV[2] ---> Brigthness
+```
 
+#### Add brightness to a certain color palette
+For this we pass the amount of brightness to six variables: `RED`, `YELLOW`, `GREEN`, `CYAN`, `BLUE` and `MAGENTA` and then adjust it for a certain pixel according to the amount of **saturation**, **brightness** and the amount of desired **color**.
 
-The steps for this are:
-- Make a copy of the image
-- Convert the actual image, on which we will gonna adjust the colors level, to grayscale
+If you see something like ```HSV[1] * HSV[1]``` that's to decrease the brightness (RED for example) of **white** palette, because the saturation of this palette is between 0% - 20% (0 - 0.2) and also ```HSV[2] * HSV[2]``` is used to decrease the brightness (GREEN for example) of **black** palette, because the brightness of this palette is between 0% - 20% (0 - 0.2).
+
+The following equation are not very smart but that's what I came up with:
+
+* RED 	= (int) (8 * RED * HSV[1] * HSV[2] * HSV[2] * (magenta - cyan));
+* GREEN = (int) (40 * GREEN * HSV[1] * HSV[2] * (yellow - magenta) * (cyan - magenta));
+* BLUE 	= (int) (70 * BLUE * HSV[1]  * HSV[2] * (b/255.0 - g/255.0) * (b/255.0 - g/255.0));
+* CYAN 	= (int) (10 * CYAN * HSV[1] * HSV[2] * (cyan - magenta) * g/255.0);
+* YELLOW = (int) (3 * YELLOW * HSV[1] * HSV[2] * (yellow - magenta) * r/255.0);
+
+I don't mention MAGENTA because I couldn't find something that works.
