@@ -367,4 +367,61 @@ public void BLACK_WHITE(int RED, int YELLOW, int GREEN, int CYAN, int BLUE, int 
 }
 ```
 
+# LevelAdjustment.java
+It is the GUI of the application and here I will highlight how to make an **open file button**, **save button**
+
+#### Browse button
+
+```java
+/***********OPEN FILE BUTTON*************/
+JButton btnBrowse = new JButton("Open Image");
+btnBrowse.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent arg0) {
+		JFileChooser file = new JFileChooser();
+		file.setCurrentDirectory(new File("D:\\Workspace\\EclipseWorkspace\\levelAdjustment-temaAVJ\\images"));
+		//filter the files
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg","gif","png");
+		file.addChoosableFileFilter(filter);
+		int result = file.showOpenDialog(null);
+		//if the user click on save in Jfilechooser
+		if(result == JFileChooser.APPROVE_OPTION){
+			File selectedFile = file.getSelectedFile();
+			String path = selectedFile.getAbsolutePath();
+			img.readImage(path);
+			label.setIcon(ResizeImage(label));
+		}
+		//if the user click on save in Jfilechooser	
+		else if(result == JFileChooser.CANCEL_OPTION){
+			System.out.println("No File Select");
+		}
+	}
+});
+btnBrowse.setBounds(27, 940, 121, 25);
+frame.getContentPane().add(btnBrowse);
+```
+
+#### Save button
+
+```java
+JButton btnSave = new JButton("Save Image");
+btnSave.addActionListener(new ActionListener() {
+	public void actionPerformed(ActionEvent e) {
+		JFileChooser file = new JFileChooser();
+		file.setCurrentDirectory(new File("D:\\Workspace\\EclipseWorkspace\\levelAdjustment-temaAVJ\\images"));
+		int result = file.showSaveDialog(null);
+		if(result == JFileChooser.APPROVE_OPTION){
+			File fileName = file.getSelectedFile();
+			String path = fileName.getAbsolutePath();
+			img.writeImage(path);
+			label.setIcon(ResizeImage(label));
+		}
+		//if the user click on save in Jfilechooser	
+		else if(result == JFileChooser.CANCEL_OPTION){
+			System.out.println("No File Select");
+		}
+	}
+});
+btnSave.setBounds(160, 940, 121, 25);
+frame.getContentPane().add(btnSave);
+```
 
