@@ -104,3 +104,12 @@ private int Truncate(int value) {
 	return value;
 }
 ```
+
+## Grayscale algorithm
+A very simple method is to change the value of each pixel with the average of RGB components.
+
+```L = (R + G + B) / 3```
+
+Another method is to use the following 
+
+```L = 0.299 * R + 0.587 * G + 0.114 * B```
