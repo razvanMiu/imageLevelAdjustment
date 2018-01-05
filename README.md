@@ -186,7 +186,8 @@ public void CONTRAST(int C) {
 }
 ```
 # Black & White algorithm
-For this one I couldn't find documentation, so if you have something too add please feel free to add.
+For this one I couldn't find documentation, so if you have something too add please feel free to add. The idea is to convert the image to B & W and then adjust the brightness of a certain color palette.
+There are six palettes: ![#ff0000](https://placehold.it/15/ff0000/000000?text=+)`(RED)`, ![#ffff00](https://placehold.it/15/ffff00/000000?text=+)`(YELLOW)`, ![#00ff00](https://placehold.it/15/00ff00/000000?text=+)`(GREEN)`, CYAN, BLUE, MAGENTA
 The steps for this are:
 - Make a copy of the image
 - Convert the actual image, on which we will gonna adjust the colors level, to grayscale
