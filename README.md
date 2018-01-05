@@ -425,3 +425,13 @@ btnSave.setBounds(160, 940, 121, 25);
 frame.getContentPane().add(btnSave);
 ```
 
+
+# Demo
+### Original image
+![alt text](https://github.com/Cartofior28/imageLevelAdjustment/blob/master/images/demo/1.jpg)
+### B & W image
+![alt text](https://github.com/Cartofior28/imageLevelAdjustment/blob/master/images/demo/2.jpg)
+### B & W image with color adjustment
+![alt text](https://github.com/Cartofior28/imageLevelAdjustment/blob/master/images/demo/3.jpg)
+### Contrast image
+![alt text](https://github.com/Cartofior28/imageLevelAdjustment/blob/master/images/demo/4.jpg)
